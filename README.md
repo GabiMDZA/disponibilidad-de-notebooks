@@ -15,7 +15,7 @@ Integrantes
 
 ## Descripción
 
-Los estudiantes y profes de la escuela tienen muchos problemas a la hora de pedir notebooks, a veces no hay, a las disponibles están con algunos defectos, o no tienen los programas necesarios para las materias. Este proyecto propone una **extensión del aula virtual** que mejore la disponibilidad de las notebooks, facilite a los profesores su reserva y le dé a los directivos una visión más clara del estado de los equipos.
+Los estudiantes y profes de la escuela tienen muchos problemas a la hora de pedir notebooks, a veces no hay, las disponibles están con algunos defectos, o no tienen los programas necesarios para las materias. Este proyecto propone una **extensión del aula virtual** que mejore la disponibilidad de las notebooks, facilite a los profesores su reserva y le dé a los directivos una visión más clara del estado de los equipos.
 
 ## Problemas detectados
 
