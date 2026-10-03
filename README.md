@@ -45,6 +45,8 @@ La idea es una interfaz similar a la de las páginas de cines (por ejemplo, Cin�
 - El orden sigue la estructura de los carritos (las "salas").
 - La disponibilidad se divide por horarios, según los módulos de cada materia.
 - Es una interfaz simple y fácil de entender para cada profesor.
+  <img width="1410" height="857" alt="image" src="https://github.com/user-attachments/assets/8c11fe08-65c0-4e90-97e4-1ae60a676201" />
+
 
 ### Información al pasar el cursor (hover)
 
