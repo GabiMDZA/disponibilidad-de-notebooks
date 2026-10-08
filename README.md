@@ -31,20 +31,15 @@ Los estudiantes y profes de la escuela tienen muchos problemas a la hora de pedi
 - **Reporte de problemas:** un apartado para notificar fallas de una notebook, como teclas faltantes o una batería defectuosa.
 - **Filtro de búsqueda por programas:** permite encontrar las computadoras que tienen el software necesario para cada materia.
 
-## ¿Cómo sería la interfaz?
+## Interfaz de Usuario 
 
-La idea es una interfaz similar a la de las páginas de cines (por ejemplo, Cinépolis) cuando se consulta la disponibilidad de asientos para una película:
+El proyecto busca una interfaz sencilla y fácil de entender porque está dirigida a todos los profes y alumnos de la escuela que necesiten computadoras (no solo de informática).
 
-| Cine | Disponibilidad de notebooks |
-| --- | --- |
-| Sala | Carrito de notebooks |
-| Asiento | Cada notebook |
-| Función / horario | Módulo de cada materia |
-| Asiento ocupado | Notebook ocupada (resaltada) |
+Lo primero que uno encontrará al ingresar a la página es un login, y según las credenciales, tendrá el rol "estudiante", "profesor" o "admin". Al ingresar nos encontraremos un Dashboard según nuestro rol.
 
-- El orden sigue la estructura de los carritos (las "salas").
-- La disponibilidad se divide por horarios, según los módulos de cada materia.
-- Es una interfaz simple y fácil de entender para cada profesor.
+Las secciones abarcan:
+- Catálogo de notebooks
+
   <img width="1410" height="857" alt="image" src="https://github.com/user-attachments/assets/8c11fe08-65c0-4e90-97e4-1ae60a676201" />
 
 
