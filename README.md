@@ -50,3 +50,13 @@ Al pasar el puntero sobre una notebook se muestra un texto con lo que el profeso
 ## Prototipo en Figma
 
 [Ver prototipo en Figma](https://www.figma.com/design/1ZIFad4slNaI7oWa8As8xp/Sin-t%C3%ADtulo?node-id=0-1&t=LeLAy1jeMLZqkMGD-1)
+
+## Base de datos
+
+El proyecto usa **MySQL Workbench** en local. Antes de levantar el servidor hay que crear la base de datos:
+
+1. Abrir **MySQL Workbench** y entrar a la conexión (`localhost`, puerto `3306`).
+2. Fijarse el archivo [`notebooks.sql`](./notebooks.sql), copiar y pegar en una pestaña de consulta.
+3. Ejecutar todo.
+
+> El script borra y crea de nuevo la base `notebooks` cada vez que se ejecuta. Sirve para dejar la demo como nueva, pero elimina cualquier dato cargado antes.
