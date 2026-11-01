@@ -8,7 +8,7 @@ COLLATE utf8mb4_unicode_ci;
 USE notebooks;
 
 -- CREACIÓN DE TABLAS
--- Alumnos, profesores y admins en una sola tabla (se distinguen por su rol).
+-- Estudiantes, profesores y admins en una sola tabla (se distinguen por su rol).
 -- El DNI se usa como username para el login.
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE usuarios (
   apellido VARCHAR(50) NOT NULL,
   dni VARCHAR(10) NOT NULL UNIQUE,
   contrasena VARCHAR(100) NOT NULL,
-  rol ENUM('alumno', 'profesor', 'admin') NOT NULL
+  rol ENUM('estudiante', 'profesor', 'admin') NOT NULL
 );
 
 -- Las notebooks son Conectar Igualdad: blancas (más pro) y negras (más noobs)
@@ -76,10 +76,10 @@ INSERT INTO usuarios (nombre, apellido, dni, contrasena, rol) VALUES
   ('Gabriela', 'Rios', '20000002', '1234', 'profesor'),
   ('Cristina', 'Iriarte', '20000003', '1234', 'profesor'),
   ('Silvia', 'Fernandez', '30000001', '1234', 'profesor'),
-  ('Manuel', 'Acosta', '30000002', '1234', 'alumno'),
-  ('Gabriel', 'Altamirano', '30000003', '1234', 'alumno'),
-  ('Gustavo', 'Guevara', '30000004', '1234', 'alumno'),
-  ('Hector', 'Lin', '30000005', '1234', 'alumno');
+  ('Manuel', 'Acosta', '30000002', '1234', 'estudiante'),
+  ('Gabriel', 'Altamirano', '30000003', '1234', 'estudiante'),
+  ('Gustavo', 'Guevara', '30000004', '1234', 'estudiante'),
+  ('Hector', 'Lin', '30000005', '1234', 'estudiante');
 
 -- Compus (1 al 10 blancas, 11 al 20 negras)
 INSERT INTO notebooks (numero, color) VALUES
@@ -108,7 +108,7 @@ FROM notebooks n
 CROSS JOIN programas p
 WHERE p.nombre IN ('Office', 'Visual Studio Code');
 
--- Las blancas tienen mejores programas (se eliminó el duplicado de Node.js)
+-- Las blancas tienen mejores programas 
 INSERT INTO notebook_programas (notebook_id, programa_id)
 SELECT n.id, p.id
 FROM notebooks n
