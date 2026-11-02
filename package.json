@@ -1,0 +1,26 @@
+{
+  "name": "disponibilidad-de-notebooks",
+  "version": "1.0.0",
+  "description": "Propuesta de mejora para el aula virtual: una extensión para reservar y consultar la disponibilidad de las notebooks de la escuela.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabiMDZA/disponibilidad-de-notebooks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GabiMDZA/disponibilidad-de-notebooks/issues"
+  },
+  "homepage": "https://github.com/GabiMDZA/disponibilidad-de-notebooks#readme",
+  "dependencies": {
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  }
+}

@@ -51,12 +51,42 @@ Al pasar el puntero sobre una notebook se muestra un texto con lo que el profeso
 
 [Ver prototipo en Figma](https://www.figma.com/design/1ZIFad4slNaI7oWa8As8xp/Sin-t%C3%ADtulo?node-id=0-1&t=LeLAy1jeMLZqkMGD-1)
 
-## Base de datos
+## Instalación
+
+**Requisitos:** tener instalados [Node.js](https://nodejs.org) y MySQL (con MySQL Workbench).
+
+### 1. Base de datos
 
 El proyecto usa **MySQL Workbench** en local. Antes de levantar el servidor hay que crear la base de datos:
 
 1. Abrir **MySQL Workbench** y entrar a la conexión (`localhost`, puerto `3306`).
-2. Fijarse el archivo [`notebooks.sql`](./notebooks.sql), copiar y pegar en una pestaña de consulta.
-3. Ejecutar todo.
+2. Copiar y pegar el archivo [`notebooks.sql`](./notebooks.sql) en una pestaña de consulta.
+3. Comprobar en el panel *SCHEMAS* que apareció la base `notebooks`.
 
-> El script borra y crea de nuevo la base `notebooks` cada vez que se ejecuta. Sirve para dejar la demo como nueva, pero elimina cualquier dato cargado antes.
+> ⚠️ El script borra y crea de nuevo la base `notebooks` cada vez que se ejecuta. Sirve para dejar la demo como nueva, pero elimina cualquier dato cargado antes.
+
+### 2. Servidor
+
+1. Abrir la carpeta del proyecto en una terminal e instalar las dependencias (`express` y `mysql2`):
+
+   ```
+   npm install express mysql2
+   ```
+
+2. Verificar que los datos de conexión en `server.js` coincidan con los de tu MySQL local:
+
+   ```js
+   host: 'localhost',
+   port: 3306,
+   user: 'root',
+   password: 'root',
+   database: 'notebooks'
+   ```
+
+3. Iniciar el servidor:
+
+   ```
+   npm start
+   ```
+
+4. Si todo está bien, la terminal muestra `¡Conectado a la base de datos de notebooks!`. Abrir `http://localhost:3000` en el navegador.
