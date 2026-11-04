@@ -1,11 +1,17 @@
-.admin-layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
-.contenido-admin { padding: 32px 48px; background: var(--fondo); overflow-y: auto; }
-.header-admin { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
-.enlace-menu { background: transparent; text-align: left; width: 100%; margin-bottom: 6px; color: #c9d4e3; }
-.enlace-menu:hover, .enlace-menu.activo { background: #2c4e7d; color: #fff; }
+
 .lista-admin { display: flex; flex-direction: column; gap: 12px; }
 .tarjeta-admin-item { background: #fff; padding: 16px 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(31,58,95,.04); }
 .tabla-admin { width: 100%; background: #fff; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(31,58,95,.04); }
 .tabla-admin th, .tabla-admin td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--borde); font-size: .9rem; }
 .tabla-admin th { background: #f8fafc; font-weight: 600; color: var(--azul); }
-/* Estilos para la sección de reportes */
+
+/* Link para volver al dashboard */
+.volver { margin-top: auto; padding: 13px 16px; color: #c9d4e3; text-decoration: none; border-radius: 10px; }
+.volver:hover { color: #fff; background: rgba(255, 255, 255, .06); }
+#form-nueva-nb { padding: 16px 22px; }
+
+/* Programas */
+#form-nuevo-programa, #panel-asignar { margin-bottom: 20px; padding: 16px 22px; }
+.grilla-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 16px; }
+.grilla-checks label { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 400; }
+.tarjeta-admin-item .boton { width: auto; margin-top: 0; padding: 10px 18px; }

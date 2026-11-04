@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Panel de Administración - Disponibilidad de Notebooks</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/catalogo.css">
 </head>
+
 <body>
-  <div class="layout admin-layout">
-    <aside class="panel">
-      <div>
-        <div class="marca">
-          <div class="logo">⚙️</div>
-          <span>Administración</span>
-        </div>
-        <h2>Panel Admin</h2>
-        <p>Gestión de reportes, préstamos, notebooks y usuarios de la escuela.</p>
+  <div class="app">
+    <aside class="lateral">
+      <div class="marca-lateral">
+        <span class="logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="11" rx="1.5" />
+            <path d="M2 19h20" />
+          </svg></span>
+        <div><strong>Administración</strong><small>Escuela de Comercio Martín Zapata</small></div>
       </div>
-      <nav class="menu-admin">
-        <button class="boton enlace-menu activo" data-seccion="reportes">Reportes pendientes</button>
-        <button class="boton enlace-menu" data-seccion="prestamos">Préstamos activos</button>
-        <button class="boton enlace-menu" data-seccion="notebooks">Gestionar notebooks</button>
-        <button class="boton enlace-menu" data-seccion="usuarios">Gestionar usuarios</button>
+      <nav class="menu">
+        <button type="button" class="enlace-menu activo" data-seccion="reportes">Reportes pendientes</button>
+        <button type="button" class="enlace-menu" data-seccion="prestamos">Préstamos activos</button>
+        <button type="button" class="enlace-menu" data-seccion="notebooks">Gestionar notebooks</button>
+        <button type="button" class="enlace-menu" data-seccion="usuarios">Gestionar usuarios</button>
+        <button type="button" class="enlace-menu" data-seccion="programas">Programas</button>
       </nav>
-      <div>
-        <a href="dashboard.html" class="boton" style="display:block; text-align:center; text-decoration:none; margin-bottom:12px;">Volver al panel</a>
-        <button id="salir" class="boton" style="background:var(--error);">Cerrar sesión</button>
-      </div>
+      <a href="dashboard.html" class="volver">← Volver al panel</a>
     </aside>
 
-    <main class="contenido-admin">
-      <header class="header-admin">
-        <h1 id="titulo-seccion">Reportes pendientes</h1>
-        <span id="usuario-admin">Admin</span>
+    <div class="columna">
+      <header class="superior">
+        <div class="persona"><strong id="usuario-admin">Admin</strong><small>Administrador/a</small></div>
+        <button type="button" class="enlace" id="salir">Cerrar sesión</button>
       </header>
 
-      <div id="mensaje" class="mensaje"></div>
+      <main class="principal">
+        <h1 id="titulo-seccion">Reportes pendientes</h1>
+        <div id="mensaje" class="mensaje"></div>
 
-      <!-- Secciones dinámicas -->
-      <section id="sec-reportes" class="seccion-admin">
-        <div id="lista-reportes" class="lista-admin"></div>
-      </section>
+        <!-- Secciones dinámicas -->
+        <section id="sec-reportes" class="seccion-admin">
+          <div id="lista-reportes" class="lista-admin"></div>
+        </section>
 
-      <section id="sec-prestamos" class="seccion-admin" hidden>
-        <table class="tabla-admin">
-          <thead>
-            <tr><th>Notebook</th><th>Usuario</th><th>Rol</th><th>Retiro</th></tr>
-          </thead>
-          <tbody id="tabla-prestamos-body"></tbody>
-        </table>
-      </section>
+        <section id="sec-prestamos" class="seccion-admin" hidden>
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Notebook</th>
+                <th>Usuario</th>
+                <th>Rol</th>
+                <th>Retiro</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-prestamos-body"></tbody>
+          </table>
+        </section>
 
-      <section id="sec-notebooks" class="seccion-admin" hidden>
-        <form id="form-nueva-nb" class="tarjeta-form" style="margin-bottom:20px; max-width:100%;">
+        <section id="sec-notebooks" class="seccion-admin" hidden>
+          <form id="form-nueva-nb" class="caja"></form>
           <h3>Agregar Notebook</h3>
           <div class="dos" style="display:flex; gap:10px; margin-top:10px;">
             <input type="text" id="nb-numero" placeholder="Número (ej: 21)" required>
@@ -62,23 +70,53 @@
             </select>
             <button type="submit" class="boton" style="width:auto; margin-top:0;">Crear</button>
           </div>
-        </form>
-        <div id="lista-notebooks-admin" class="lista-admin"></div>
-      </section>
+          </form>
+          <div id="lista-notebooks-admin" class="lista-admin"></div>
+        </section>
 
-      <section id="sec-usuarios" class="seccion-admin" hidden>
-        <table class="tabla-admin">
-          <thead>
-            <tr><th>Nombre</th><th>DNI</th><th>Rol</th><th>Acciones</th></tr>
-          </thead>
-          <tbody id="tabla-usuarios-body"></tbody>
-        </table>
+        <section id="sec-usuarios" class="seccion-admin" hidden>
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>DNI</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-usuarios-body"></tbody>
+          </table>
+        </section>
+
+              <section id="sec-programas" class="seccion-admin" hidden>
+        <form id="form-nuevo-programa" class="caja">
+          <h3>Agregar programa</h3>
+          <div style="display:flex; gap:10px; margin-top:10px;">
+            <input type="text" id="programa-nombre" placeholder="Nombre (ej: Photoshop)" maxlength="60" required>
+            <button type="submit" class="boton" style="width:auto; margin-top:0;">Crear</button>
+          </div>
+        </form>
+
+        <div id="panel-asignar" class="caja" hidden>
+          <h3 id="asignar-titulo"></h3>
+          <div id="asignar-grilla" class="grilla-checks"></div>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <button type="button" class="boton" id="asignar-guardar" style="width:auto; margin-top:0;">Guardar</button>
+            <button type="button" class="enlace" id="asignar-todas">Marcar / desmarcar todas</button>
+            <button type="button" class="enlace" id="asignar-cerrar">Cerrar</button>
+          </div>
+        </div>
+
+        <div id="lista-programas" class="lista-admin"></div>
       </section>
-    </main>
+      
+      </main>
+    </div>
   </div>
 
   <!-- Scripts -->
   <script src="js/Usuario.js"></script>
   <script src="js/admin.js"></script>
 </body>
+
 </html>

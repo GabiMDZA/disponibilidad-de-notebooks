@@ -60,6 +60,17 @@ app.get('/api/notebooks', (req, res) => {
     });
 });
 
+// lista de programas (para el filtro del catálogo)
+app.get('/api/programas', (req, res) => {
+    conexion.query('SELECT id, nombre FROM programas ORDER BY nombre', (error, resultados) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error al leer los programas' });
+        }
+        res.json(resultados);
+    });
+});
+
 // registro de usuarios nuevos
 app.post('/api/registro', (req, res) => {
     const { nombre, apellido, dni, contrasena, rol } = req.body;
@@ -243,6 +254,22 @@ app.post('/api/reportes', (req, res) => {
     });
 });
 
+// "Mis reportes": los reportes que hizo el usuario y en qué estado están
+app.get('/api/mis-reportes/:usuario_id', (req, res) => {
+    const sql = `SELECT r.id, r.descripcion, r.estado, r.fecha, n.numero AS notebook_numero
+                 FROM reportes r
+                 JOIN notebooks n ON n.id = r.notebook_id
+                 WHERE r.usuario_id = ?
+                 ORDER BY r.fecha DESC`;
+    conexion.query(sql, [req.params.usuario_id], (error, resultados) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error al leer tus reportes' });
+        }
+        res.json(resultados);
+    });
+});
+
 // reportes pendientes (solo admin): /api/reportes/pendientes?usuario_id=1
 app.get('/api/reportes/pendientes', (req, res) => {
     verificarAdmin(req.query.usuario_id, res, () => {
@@ -381,6 +408,100 @@ app.get('/api/admin/prestamos', (req, res) => {
                 return res.status(500).json({ error: 'Error al leer los préstamos' });
             }
             res.json(resultados);
+        });
+    });
+});
+
+// PROGRAMAS (solo admin)
+
+// crear un programa
+app.post('/api/admin/programas', (req, res) => {
+    const { usuario_id, nombre } = req.body;
+
+    if (!nombre || !nombre.trim()) {
+        return res.status(400).json({ error: 'Ingresá el nombre del programa' });
+    }
+    if (nombre.trim().length > 60) {
+        return res.status(400).json({ error: 'El nombre es muy largo (máximo 60 caracteres)' });
+    }
+
+    verificarAdmin(usuario_id, res, () => {
+        conexion.query('INSERT INTO programas (nombre) VALUES (?)', [nombre.trim()], (error, resultado) => {
+            if (error) {
+                // ER_DUP_ENTRY = ya existe un programa con ese nombre (la columna es UNIQUE)
+                if (error.code === 'ER_DUP_ENTRY') {
+                    return res.status(409).json({ error: 'Ese programa ya existe' });
+                }
+                console.error(error);
+                return res.status(500).json({ error: 'Error al crear el programa' });
+            }
+            res.status(201).json({ mensaje: 'Programa creado', id: resultado.insertId });
+        });
+    });
+});
+
+// eliminar un programa: se saca de todas las notebooks (ON DELETE CASCADE)
+app.delete('/api/admin/programas/:id', (req, res) => {
+    verificarAdmin(req.query.usuario_id, res, () => {
+        conexion.query('DELETE FROM programas WHERE id = ?', [req.params.id], (error, resultado) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: 'Error al eliminar el programa' });
+            }
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({ error: 'Programa no encontrado' });
+            }
+            res.json({ mensaje: 'Programa eliminado' });
+        });
+    });
+});
+
+// ids de las notebooks que tienen un programa: /api/admin/programas/3/notebooks?usuario_id=1
+app.get('/api/admin/programas/:id/notebooks', (req, res) => {
+    verificarAdmin(req.query.usuario_id, res, () => {
+        conexion.query('SELECT notebook_id FROM notebook_programas WHERE programa_id = ?', [req.params.id], (error, resultados) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: 'Error al leer las notebooks del programa' });
+            }
+            res.json(resultados.map(fila => fila.notebook_id));
+        });
+    });
+});
+
+// guardar en qué notebooks está el programa (reemplaza la lista anterior)
+app.put('/api/admin/programas/:id/notebooks', (req, res) => {
+    const { usuario_id, notebook_ids } = req.body;
+
+    if (!Array.isArray(notebook_ids) || !notebook_ids.every(n => Number.isInteger(n))) {
+        return res.status(400).json({ error: 'Lista de notebooks no válida' });
+    }
+    const ids = [...new Set(notebook_ids)];   // sin repetidos
+
+    verificarAdmin(usuario_id, res, () => {
+        // paso 1: borrar las asignaciones actuales de este programa
+        conexion.query('DELETE FROM notebook_programas WHERE programa_id = ?', [req.params.id], (error) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: 'Error al actualizar el programa' });
+            }
+            if (ids.length === 0) {
+                return res.json({ mensaje: 'El programa quedó sin notebooks' });
+            }
+
+            // paso 2: insertar las nuevas (un solo INSERT con varias filas)
+            const filas = ids.map(id => [id, req.params.id]);
+            conexion.query('INSERT INTO notebook_programas (notebook_id, programa_id) VALUES ?', [filas], (error) => {
+                if (error) {
+                    // ER_NO_REFERENCED_ROW_2 = el programa o alguna notebook no existe
+                    if (error.code === 'ER_NO_REFERENCED_ROW_2') {
+                        return res.status(404).json({ error: 'El programa o alguna notebook no existe' });
+                    }
+                    console.error(error);
+                    return res.status(500).json({ error: 'Error al asignar el programa' });
+                }
+                res.json({ mensaje: 'Programa asignado a ' + ids.length + (ids.length === 1 ? ' notebook' : ' notebooks') });
+            });
         });
     });
 });

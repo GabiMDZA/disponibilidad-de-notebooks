@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis reportes · Notebooks</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+  <link rel="stylesheet" href="css/mis-reportes.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="lateral">
+      <div class="marca-lateral">
+        <span class="logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></span>
+        <div><strong>Aula Digital</strong><small>Escuela de Comercio Martín Zapata</small></div>
+      </div>
+      <nav class="menu">
+        <button type="button" data-pagina="dashboard.html">Panel principal</button>
+        <button type="button" data-pagina="reportar.html">Reportar problema</button>
+        <button type="button" class="activo" data-pagina="mis-reportes.html">Mis reportes</button>
+        <button type="button" id="menu-admin" data-pagina="admin.html" hidden>Panel admin</button>
+      </nav>
+      <div class="ayuda"><strong>¿Necesitás ayuda?</strong><span>comunicate con el +54 9 2615 01-1568</span></div>
+    </aside>
+
+    <div class="columna">
+      <header class="superior">
+        <span class="avatar" id="avatar"></span>
+        <div class="persona"><strong id="usuario-nombre"></strong><small id="usuario-rol"></small></div>
+        <button type="button" class="enlace" id="salir">Cerrar sesión</button>
+      </header>
+
+      <main class="principal">
+        <div class="contenedor-reportes">
+          <div class="encabezado">
+            <div>
+              <h1>Mis reportes</h1>
+              <p class="sub">Pendiente: lo tiene que revisar un admin · Aprobado: aparece como defecto en la notebook · Rechazado: no se publicó.</p>
+            </div>
+            <a class="boton" href="reportar.html">Nuevo reporte</a>
+          </div>
+
+          <p id="mensaje" class="mensaje" hidden></p>
+          <div id="lista-reportes"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/Usuario.js"></script>
+  <script src="js/mis-reportes.js"></script>
+</body>
+</html>

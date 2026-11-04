@@ -1,0 +1,14 @@
+/* Estilos propios de mis-reportes.html (usa las variables de styles.css y catalogo.css) */
+.contenedor-reportes { max-width: 760px; }
+.contenedor-reportes .encabezado { flex-wrap: wrap; }
+.contenedor-reportes .encabezado .boton { display: inline-block; text-align: center; text-decoration: none; white-space: nowrap; }
+
+.reporte { margin-bottom: 14px; padding: 16px 20px; background: #fff; border: 1px solid var(--borde); border-radius: 16px; box-shadow: 0 4px 16px rgba(31, 58, 95, .05); }
+.reporte-cabecera { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.reporte p { margin: 8px 0; line-height: 1.4; }
+.reporte small { color: var(--gris); }
+
+/* Estados del reporte */
+.insignia.pendiente { color: #a8650d; background: #fdf1dc; }
+.insignia.aprobado { color: var(--verde); background: #e6f0ec; }
+.insignia.rechazado { color: var(--error); background: #fbe6e6; }
