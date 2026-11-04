@@ -1,0 +1,59 @@
+:root {
+  --azul: #1f3a5f;
+  --verde: #457f69;
+  --verde-oscuro: #386856;
+  --fondo: #f5f6f8;
+  --gris: #6b7685;
+  --borde: #d9dee5;
+  --link: #2f6aa3;
+  --error: #b3302f;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font-family: Inter, system-ui, "Segoe UI", sans-serif; background: var(--fondo); color: var(--azul); }
+
+/* Estructura de dos paneles */
+.layout { display: grid; grid-template-columns: 5fr 7fr; min-height: 100vh; }
+.panel { background: var(--azul); color: #fff; padding: 48px 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.marca { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 1.1rem; }
+.logo { display: grid; place-items: center; width: 44px; height: 44px; background: #fff; border-radius: 12px; }
+.foto { width: 100%; height: 300px; border-radius: 22px; object-fit: cover; background: #2c4a73; }
+.panel h2 { font-size: 2.1rem; line-height: 1.15; margin: 0 0 14px; }
+.panel p { margin: 0; color: #c9d4e3; line-height: 1.5; max-width: 42ch; }
+.panel small { color: #a9b8cd; }
+.contenido { display: grid; place-items: center; padding: 32px; }
+
+/* Tarjeta y formularios */
+.tarjeta { background: #fff; width: 100%; max-width: 480px; padding: 44px; border-radius: 22px; box-shadow: 0 10px 40px rgba(31, 58, 95, .08); }
+.eyebrow { margin: 0 0 18px; color: var(--verde); font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+h1 { margin: 0 0 10px; font-size: 2rem; line-height: 1.15; }
+.sub { margin: 0 0 28px; color: var(--gris); line-height: 1.5; }
+label { display: block; margin: 18px 0 8px; font-size: .9rem; font-weight: 600; }
+input[type="text"], input[type="password"], select { width: 100%; padding: 14px 16px; font: inherit; color: var(--azul); background: #fff; border: 1px solid var(--borde); border-radius: 10px; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 3px solid rgba(47, 106, 163, .35); outline-offset: 2px; }
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fila { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px; font-size: .9rem; }
+label.check { display: flex; align-items: center; gap: 10px; margin: 0; font-weight: 400; }
+.check input { width: 18px; height: 18px; accent-color: var(--verde); }
+
+.boton { width: 100%; margin-top: 20px; padding: 15px; font: inherit; font-weight: 600; color: #fff; background: var(--verde); border: 0; border-radius: 10px; cursor: pointer; }
+.boton:hover { background: var(--verde-oscuro); }
+.boton:disabled { opacity: .6; cursor: wait; }
+.enlace { padding: 0; font: inherit; font-weight: 600; color: var(--link); background: none; border: 0; cursor: pointer; }
+.enlace:hover { text-decoration: underline; }
+.mensaje { min-height: 1.3em; margin: 16px 0 0; font-size: .9rem; font-weight: 500; }
+.mensaje.error { color: var(--error); }
+.mensaje.ok { color: var(--verde); }
+.pie { margin: 22px 0 0; text-align: center; color: var(--gris); font-size: .9rem; }
+.info { padding: 16px; background: #eaf1f8; border-radius: 10px; color: var(--azul); line-height: 1.5; font-size: .92rem; }
+.nota { margin: 22px 0 0; text-align: center; color: var(--gris); font-size: .8rem; }
+
+/* Dashboard provisorio */
+body.simple { display: grid; place-items: center; min-height: 100vh; }
+body.simple .tarjeta { text-align: center; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel { display: none; }
+  .tarjeta { padding: 32px 24px; }
+}

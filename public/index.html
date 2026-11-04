@@ -1,10 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Control de Pagos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Disponibilidad de Notebooks</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <p>nada por ahora</p>
+  <main class="layout">
+    <aside class="panel">
+      <div class="marca">
+        <span class="logo">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>
+        </span>
+        <span>Escuela de Comercio Martín Zapata</span>
+      </div>
+      <img class="foto" src="img/notebooks.png" alt="Estudiantes y una docente trabajando con notebooks en la biblioteca">
+      <div>
+        <h2>Tecnología lista para cada clase.</h2>
+        <p>Consultá disponibilidad, elegí equipos y acompañá cada préstamo desde un único lugar.</p>
+      </div>
+      <small>Soporte TIC · interno 204 · soportezapata@gmail.com</small>
+    </aside>
+    <section class="contenido">
+      <div class="tarjeta vista" id="vista-login">
+        <p class="eyebrow">Disponibilidad de notebooks</p>
+        <h1>Te damos la bienvenida</h1>
+        <p class="sub">Ingresá con tu DNI y contraseña para consultar y pedir notebooks.</p>
+        <form id="form-login" novalidate>
+          <label for="login-dni">DNI</label>
+          <input id="login-dni" type="text" inputmode="numeric" autocomplete="username" placeholder="Sin puntos ni espacios" required>
+          <label for="login-clave">Contraseña</label>
+          <input id="login-clave" type="password" autocomplete="current-password" required>
+          <div class="fila">
+            <label class="check"><input type="checkbox" id="recordar"> Mantener sesión iniciada</label>
+            <button type="button" class="enlace" data-ir="recuperar">Olvidé mi contraseña</button>
+          </div>
+          <p class="mensaje" id="msg-login" role="alert"></p>
+          <button type="submit" class="boton">Ingresar</button>
+        </form>
+        <p class="pie">¿No tenés cuenta? <button type="button" class="enlace" data-ir="registro">Crear cuenta</button></p>
+      </div>
+
+      <div class="tarjeta vista" id="vista-registro" hidden>
+        <p class="eyebrow">Crear cuenta</p>
+        <h1>Registrate</h1>
+        <p class="sub">Completá tus datos. Vas a ingresar con tu DNI.</p>
+        <form id="form-registro" novalidate>
+          <div class="dos">
+            <div><label for="reg-nombre">Nombre</label><input id="reg-nombre" type="text" autocomplete="given-name" required></div>
+            <div><label for="reg-apellido">Apellido</label><input id="reg-apellido" type="text" autocomplete="family-name" required></div>
+          </div>
+          <label for="reg-dni">DNI</label>
+          <input id="reg-dni" type="text" inputmode="numeric" placeholder="Sin puntos ni espacios" required>
+          <label for="reg-clave">Contraseña</label>
+          <input id="reg-clave" type="password" autocomplete="new-password" required>
+          <label for="reg-rol">Soy</label>
+          <select id="reg-rol"><option value="estudiante">Estudiante</option><option value="profesor">Profesor/a</option></select>
+          <p class="mensaje" id="msg-registro" role="alert"></p>
+          <button type="submit" class="boton">Crear cuenta</button>
+        </form>
+        <p class="pie"><button type="button" class="enlace" data-ir="login">← Volver al inicio de sesión</button></p>
+      </div>
+
+      <div class="tarjeta vista" id="vista-recuperar" hidden>
+        <p class="eyebrow">Recuperar acceso</p>
+        <h1>Restablecé tu contraseña</h1>
+        <p class="sub">Un administrador puede restablecerla por vos.</p>
+        <div class="info">Acercate a Secretaría con tu DNI o escribí a soportezapata@gmail.com. Te van a asignar una contraseña nueva.</div>
+        <p class="pie"><button type="button" class="enlace" data-ir="login">← Volver al inicio de sesión</button></p>
+        <p class="nota">Nunca te vamos a pedir tu contraseña por correo.</p>
+      </div>
+
+    </section>
+  </main>
+  <script src="js/login.js"></script>
 </body>
 </html>
