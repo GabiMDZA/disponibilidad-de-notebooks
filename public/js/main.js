@@ -1,5 +1,4 @@
-const guardado = localStorage.getItem('usuario') || sessionStorage.getItem('usuario');
-const usuario = guardado ? JSON.parse(guardado) : null;
+const usuario = Usuario.desdeSesion();
 
 // si no hay sesión, volvemos al login
 if (!usuario) {
@@ -13,8 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // esto borra la sesión de los dos almacenes y vuelve al login
     document.getElementById('salir').addEventListener('click', () => {
-        localStorage.removeItem('usuario');
-        sessionStorage.removeItem('usuario');
+        Usuario.cerrarSesion();
         location.replace('index.html');
     });
 });

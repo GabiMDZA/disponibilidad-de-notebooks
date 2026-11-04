@@ -1,7 +1,7 @@
 //pantalla login
 
 // acá hay BOM, si ya hay una sesión guardada, vamos d1 al dashboard
-if (localStorage.getItem('usuario') || sessionStorage.getItem('usuario')) {
+if (Usuario.desdeSesion()) {
     location.href = 'dashboard.html';
 }
 
@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!ok) return mensaje(msgLogin, data.error, 'error');
 
         // para mantener iniciada la sesion (bom)
-        const almacen = document.getElementById('recordar').checked ? localStorage : sessionStorage;
-        almacen.setItem('usuario', JSON.stringify(data));
-        location.href = 'dashboard.html';
+       const usuario = new Usuario(data.id, data.nombre, data.apellido, data.dni, data.rol);
+usuario.guardarSesion(document.getElementById('recordar').checked);
+location.href = 'dashboard.html';
     });
 
     // registro
