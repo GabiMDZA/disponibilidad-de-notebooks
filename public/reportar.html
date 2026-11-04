@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportar problema · Notebooks</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+  <link rel="stylesheet" href="css/reportar.css">
+</head>
+<body class="pagina-reportar">
+  <main class="reportar-contenedor">
+    <a class="enlace" href="dashboard.html">← Volver al panel</a>
+
+    <section class="caja">
+      <h1>Reportar problema</h1>
+      <p class="sub">Contanos qué le pasa a la notebook. Un admin va a revisar el reporte.</p>
+
+      <form id="form-reporte" novalidate>
+        <label for="notebook">Notebook</label>
+        <select id="notebook" required>
+          <option value="">Cargando notebooks...</option>
+        </select>
+
+        <label for="descripcion">Descripción del problema</label>
+        <textarea id="descripcion" maxlength="255" rows="5"
+                  placeholder="Ej: la tecla A no funciona"></textarea>
+        <p class="contador"><span id="contador">0</span> / 255</p>
+
+        <button type="submit" class="boton" id="btn-enviar">Enviar reporte</button>
+      </form>
+
+      <p id="mensaje" class="mensaje" hidden></p>
+    </section>
+  </main>
+
+  <script src="js/Usuario.js"></script>
+  <script src="js/reportar.js"></script>
+</body>
+</html>
