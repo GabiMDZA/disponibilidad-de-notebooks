@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,91 +8,128 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/catalogo.css">
 </head>
+
 <body>
-<div class="app">
+  <div class="app">
 
-  <!-- Menú lateral -->
-  <aside class="lateral">
-    <div class="marca-lateral">
-      <span class="logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></span>
-      <div><strong>Aula Digital</strong><small>Escuela de Comercio Martín Zapata</small></div>
+    <!-- Menú lateral -->
+    <aside class="lateral">
+      <div class="marca-lateral">
+        <span class="logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="5" width="16" height="11" rx="1.5" />
+            <path d="M2 19h20" />
+          </svg></span>
+        <div><strong>Aula Digital</strong><small>Escuela de Comercio Martín Zapata</small></div>
+      </div>
+      <nav class="menu">
+        <button type="button" class="activo" data-vista="panel">Panel principal</button>
+        <button type="button" data-vista="notebooks">Notebooks</button>
+        <button type="button" data-pagina="reportar.html">Reportar problema</button>
+        <button type="button" id="menu-admin" data-pagina="admin.html" hidden>Panel admin</button>
+      </nav>
+      <div class="ayuda"><strong>¿Necesitás ayuda?</strong><span>Comunicate al +54 9 2615 01-1568</span></div>
+    </aside>
+
+    <div class="columna">
+      <header class="superior">
+        <span class="avatar" id="avatar"></span>
+        <div class="persona"><strong id="usuario-nombre"></strong><small id="usuario-rol"></small></div>
+        <button type="button" class="enlace" id="salir">Cerrar sesión</button>
+      </header>
+
+      <main class="principal">
+        <p class="mensaje" id="mensaje" role="alert"></p>
+
+        <!-- VISTA: Panel principal -->
+        <section id="vista-panel">
+          <div class="encabezado">
+            <div>
+              <h1 id="saludo"></h1>
+              <p class="sub" id="fecha"></p>
+            </div>
+            <button type="button" class="boton" id="btn-ir-catalogo" hidden>Elegir notebook</button>
+          </div>
+          <div class="resumen">
+            <div class="stat"><span>Disponibles ahora</span><strong id="stat-libres">–</strong><small class="verde"
+                id="sub-libres"></small></div>
+            <div class="stat"><span>Ocupadas</span><strong id="stat-ocupadas">–</strong><small class="ambar"
+                id="sub-ocupadas"></small></div>
+            <div class="stat"><span>En reparación</span><strong id="stat-reparacion">–</strong><small class="rojo">no se
+                pueden elegir por ahora</small></div>
+            <div class="stat"><span>Tus notebooks</span><strong id="stat-mias">–</strong><small class="azul"
+                id="sub-mias"></small></div>
+          </div>
+          <div class="dos-columnas">
+            <div>
+              <div class="titulo-seccion">
+                <h2>Tus notebooks</h2>
+              </div>
+              <div class="caja" id="lista-mias"></div>
+              <div class="titulo-seccion">
+                <h2>Equipo recomendado</h2><button type="button" class="enlace" data-ir="notebooks">Ver
+                  catálogo</button>
+              </div>
+              <div id="recomendado"></div>
+            </div>
+            <div>
+              <div class="titulo-seccion">
+                <h2>Disponibles por tipo</h2>
+              </div>
+              <div class="caja" id="tipo-lista"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VISTA: Catálogo -->
+        <section id="vista-notebooks" hidden>
+          <h1>Catálogo de notebooks</h1>
+          <p class="sub" id="resumen-catalogo"></p>
+          <p class="sub" id="ayuda-catalogo"></p>
+          <div class="filtros">
+            <div class="campo grande"><label for="filtro-texto">Buscar</label><input id="filtro-texto" type="text"
+                placeholder="Número, color o programa"></div>
+            <div class="campo"><label for="filtro-estado">Estado</label>
+              <select id="filtro-estado">
+                <option value="">Todos los estados</option>
+                <option value="libre">Disponibles</option>
+                <option value="ocupada">Ocupadas</option>
+                <option value="en_reparacion">En reparación</option>
+              </select>
+            </div>
+            <div class="campo"><label for="filtro-color">Color</label>
+              <select id="filtro-color">
+                <option value="">Todos</option>
+                <option value="blanca">Blancas</option>
+                <option value="negra">Negras</option>
+              </select>
+            </div>
+            <div class="campo"><label for="filtro-programa">Programa</label>
+              <select id="filtro-programa">
+                <option value="">Todos</option>
+              </select>
+            </div>
+          </div>
+          <div class="chips">
+            <button type="button" class="chip estado-libre" data-estado="libre"></button>
+            <button type="button" class="chip estado-ocupada" data-estado="ocupada"></button>
+            <button type="button" class="chip estado-en-reparacion" data-estado="en_reparacion"></button>
+          </div>
+          <section class="grilla" id="catalogo"></section>
+        </section>
+      </main>
     </div>
-    <nav class="menu">
-      <button type="button" class="activo" data-vista="panel">Panel principal</button>
-      <button type="button" data-vista="notebooks">Notebooks</button>
-    </nav>
-    <div class="ayuda"><strong>¿Necesitás ayuda?</strong><span>El equipo TIC responde de 8:00 a 17:00.</span></div>
-  </aside>
-
-  <div class="columna">
-    <header class="superior">
-      <span class="avatar" id="avatar"></span>
-      <div class="persona"><strong id="usuario-nombre"></strong><small id="usuario-rol"></small></div>
-      <button type="button" class="enlace" id="salir">Cerrar sesión</button>
-    </header>
-
-    <main class="principal">
-      <p class="mensaje" id="mensaje" role="alert"></p>
-
-      <!-- VISTA: Panel principal -->
-      <section id="vista-panel">
-        <div class="encabezado">
-          <div><h1 id="saludo"></h1><p class="sub" id="fecha"></p></div>
-          <button type="button" class="boton" id="btn-ir-catalogo" hidden>Elegir notebook</button>
-        </div>
-        <div class="resumen">
-          <div class="stat"><span>Disponibles ahora</span><strong id="stat-libres">–</strong><small class="verde" id="sub-libres"></small></div>
-          <div class="stat"><span>Ocupadas</span><strong id="stat-ocupadas">–</strong><small class="ambar" id="sub-ocupadas"></small></div>
-          <div class="stat"><span>En reparación</span><strong id="stat-reparacion">–</strong><small class="rojo">no se pueden elegir por ahora</small></div>
-          <div class="stat"><span>Tus notebooks</span><strong id="stat-mias">–</strong><small class="azul" id="sub-mias"></small></div>
-        </div>
-        <div class="dos-columnas">
-          <div>
-            <div class="titulo-seccion"><h2>Tus notebooks</h2></div>
-            <div class="caja" id="lista-mias"></div>
-            <div class="titulo-seccion"><h2>Equipo recomendado</h2><button type="button" class="enlace" data-ir="notebooks">Ver catálogo</button></div>
-            <div id="recomendado"></div>
-          </div>
-          <div>
-            <div class="titulo-seccion"><h2>Disponibles por tipo</h2></div>
-            <div class="caja" id="tipo-lista"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- VISTA: Catálogo -->
-      <section id="vista-notebooks" hidden>
-        <h1>Catálogo de notebooks</h1>
-        <p class="sub" id="resumen-catalogo"></p>
-        <p class="sub" id="ayuda-catalogo"></p>
-        <div class="filtros">
-          <div class="campo grande"><label for="filtro-texto">Buscar</label><input id="filtro-texto" type="text" placeholder="Número, color o programa"></div>
-          <div class="campo"><label for="filtro-estado">Estado</label>
-            <select id="filtro-estado"><option value="">Todos los estados</option><option value="libre">Disponibles</option><option value="ocupada">Ocupadas</option><option value="en_reparacion">En reparación</option></select></div>
-          <div class="campo"><label for="filtro-color">Color</label>
-            <select id="filtro-color"><option value="">Todos</option><option value="blanca">Blancas</option><option value="negra">Negras</option></select></div>
-          <div class="campo"><label for="filtro-programa">Programa</label>
-            <select id="filtro-programa"><option value="">Todos</option></select></div>
-        </div>
-        <div class="chips">
-          <button type="button" class="chip estado-libre" data-estado="libre"></button>
-          <button type="button" class="chip estado-ocupada" data-estado="ocupada"></button>
-          <button type="button" class="chip estado-en-reparacion" data-estado="en_reparacion"></button>
-        </div>
-        <section class="grilla" id="catalogo"></section>
-      </section>
-    </main>
   </div>
-</div>
 
-<div class="barra-elegir" id="barra-elegir" hidden>
-  <span id="cantidad"></span>
-  <button type="button" class="boton" id="btn-elegir">Elegir</button>
-</div>
+  <div class="barra-elegir" id="barra-elegir" hidden>
+    <span id="cantidad"></span>
+    <button type="button" class="boton" id="btn-elegir">Elegir</button>
+  </div>
 
-<script src="js/Usuario.js"></script>
-<script src="js/Notebook.js"></script>
-<script src="js/Catalogo.js"></script>
-<script src="js/main.js"></script>
+  <script src="js/Usuario.js"></script>
+  <script src="js/Notebook.js"></script>
+  <script src="js/Catalogo.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

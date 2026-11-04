@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('[data-vista]').forEach(b => b.addEventListener('click', () => mostrarVista(b.dataset.vista)));
     document.querySelectorAll('[data-ir]').forEach(b => b.addEventListener('click', () => mostrarVista(b.dataset.ir)));
     $('btn-ir-catalogo').addEventListener('click', () => mostrarVista('notebooks'));
+    // links a otras páginas (el de admin solo lo ve el admin)
+    $('menu-admin').hidden = !usuario.esAdmin();
+    document.querySelectorAll('[data-pagina]').forEach(b => b.addEventListener('click', () => { location.href = b.dataset.pagina; }));
 
     //encabezado y saludo
     const roles = { estudiante: 'Estudiante', profesor: 'Profesor/a', admin: 'Administrador/a' };
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     $('ayuda-catalogo').textContent = usuario.puedeElegir()
         ? 'Tocá las notebooks disponibles que necesitás y apretá "Elegir".'
         : 'Podés consultar la disponibilidad y los programas de cada notebook.';
-//panel principal
+    //panel principal
     function fila(titulo, detalle, boton) {
         const div = document.createElement('div');
         div.classList.add('fila-dato');

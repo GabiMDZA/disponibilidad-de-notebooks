@@ -426,6 +426,28 @@ app.put('/api/admin/usuarios/:id/rol', (req, res) => {
     });
 });
 
+// restablecer la contraseña de un usuario (solo admin)
+app.put('/api/admin/usuarios/:id/contrasena', (req, res) => {
+    const { usuario_id, contrasena } = req.body;
+
+    if (!contrasena || !contrasena.trim()) {
+        return res.status(400).json({ error: 'Ingresá la nueva contraseña' });
+    }
+
+    verificarAdmin(usuario_id, res, () => {
+        conexion.query('UPDATE usuarios SET contrasena = ? WHERE id = ?', [contrasena.trim(), req.params.id], (error, resultado) => {
+            if (error) {
+                console.error(error);
+                return res.status(500).json({ error: 'Error al cambiar la contraseña' });
+            }
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({ error: 'Usuario no encontrado' });
+            }
+            res.json({ mensaje: 'Contraseña actualizada' });
+        });
+    });
+});
+
 // eliminar un usuario (solo admin): /api/admin/usuarios/9?usuario_id=1
 // las notebooks que tenia prestadas vuelven a quedar libres
 app.delete('/api/admin/usuarios/:id', (req, res) => {
