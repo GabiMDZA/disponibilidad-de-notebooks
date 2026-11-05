@@ -1,0 +1,24 @@
+.encabezado .boton { width: auto; margin: 0; white-space: nowrap; }
+
+.rejilla-cuenta { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+.rejilla-cuenta .caja { padding: 18px 24px; margin-bottom: 20px; }
+.rejilla-cuenta h3 { margin: 0 0 14px; }
+
+.perfil { text-align: center; }
+.perfil h2 { margin: 0; font-size: 1.3rem; }
+.avatar.grande { display: flex; align-items: center; justify-content: center; width: 96px; height: 96px; margin: 8px auto 12px; font-size: 2.2rem; }
+
+.dato-linea { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--borde); }
+#btn-cambiar-clave { margin-top: 14px; }
+
+.campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.campos label { margin-top: 12px; }
+input:disabled { background: #f1f3f6; color: var(--gris); cursor: not-allowed; }
+
+.acciones-form { display: flex; align-items: center; gap: 16px; margin-top: 14px; }
+.acciones-form .boton { width: auto; margin-top: 0; }
+
+@media (max-width: 860px) {
+  .rejilla-cuenta { grid-template-columns: 1fr; }
+  .campos { grid-template-columns: 1fr; }
+}

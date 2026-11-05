@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi cuenta · Notebooks</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+  <link rel="stylesheet" href="css/cuenta.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="lateral">
+      <div class="marca-lateral">
+        <span class="logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#1f3a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></span>
+        <div><strong>Aula Digital</strong><small>Escuela de Comercio Martín Zapata</small></div>
+      </div>
+      <nav class="menu">
+        <button type="button" data-pagina="dashboard.html">Panel principal</button>
+        <button type="button" data-pagina="reportar.html">Reportar problema</button>
+        <button type="button" data-pagina="mis-reportes.html">Mis reportes</button>
+        <button type="button" class="activo" data-pagina="cuenta.html">Mi cuenta</button>
+        <button type="button" id="menu-admin" data-pagina="admin.html" hidden>Panel admin</button>
+      </nav>
+      <div class="ayuda"><strong>¿Necesitás ayuda?</strong><span>comunicate al +54 9 2615 01-1568</span></div>
+    </aside>
+
+    <div class="columna">
+      <header class="superior">
+        <span class="avatar" id="avatar"></span>
+        <div class="persona"><strong id="usuario-nombre"></strong><small id="usuario-rol"></small></div>
+        <button type="button" class="enlace" id="salir">Cerrar sesión</button>
+      </header>
+
+      <main class="principal">
+        <div class="encabezado">
+          <div>
+            <h1>Mi cuenta</h1>
+            <p class="sub">Actualizá tus datos y cambiá tu contraseña.</p>
+          </div>
+          <button type="submit" form="form-datos" class="boton">Guardar cambios</button>
+        </div>
+
+        <p id="mensaje" class="mensaje" hidden></p>
+
+        <div class="rejilla-cuenta">
+          <div>
+            <div class="caja perfil">
+              <span class="avatar grande" id="perfil-avatar"></span>
+              <h2 id="perfil-nombre"></h2>
+              <p class="sub" id="perfil-rol"></p>
+            </div>
+
+            <div class="caja">
+              <h3>Mi actividad</h3>
+              <div class="dato-linea"><span>Notebooks que tenés ahora</span><strong id="dato-notebooks">–</strong></div>
+              <div class="dato-linea"><span>Reportes enviados</span><strong id="dato-reportes">–</strong></div>
+              <button type="button" class="enlace" id="btn-cambiar-clave">Cambiar contraseña</button>
+            </div>
+          </div>
+
+          <div>
+            <form id="form-datos" class="caja">
+              <h3>Información personal</h3>
+              <div class="campos">
+                <div><label for="nombre">Nombre</label><input type="text" id="nombre" maxlength="50" required></div>
+                <div><label for="apellido">Apellido</label><input type="text" id="apellido" maxlength="50" required></div>
+                <div><label for="dni">DNI</label><input type="text" id="dni" disabled></div>
+                <div><label for="rol">Rol</label><input type="text" id="rol" disabled></div>
+              </div>
+            </form>
+
+            <form id="form-clave" class="caja" hidden>
+              <h3>Cambiar contraseña</h3>
+              <div class="campos">
+                <div><label for="clave-actual">Contraseña actual</label><input type="password" id="clave-actual" required></div>
+                <div><label for="clave-nueva">Nueva contraseña</label><input type="password" id="clave-nueva" maxlength="100" required></div>
+              </div>
+              <div class="acciones-form">
+                <button type="submit" class="boton">Cambiar contraseña</button>
+                <button type="button" class="enlace" id="btn-cancelar-clave">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/Usuario.js"></script>
+  <script src="js/cuenta.js"></script>
+</body>
+</html>

@@ -506,6 +506,55 @@ app.put('/api/admin/programas/:id/notebooks', (req, res) => {
     });
 });
 
+// MI CUENTA (cada usuario edita sus propios datos)
+
+// cambiar nombre y apellido
+app.put('/api/usuarios/:id', (req, res) => {
+    const { nombre, apellido } = req.body;
+
+    if (!nombre || !nombre.trim() || !apellido || !apellido.trim()) {
+        return res.status(400).json({ error: 'Completá el nombre y el apellido' });
+    }
+    if (nombre.trim().length > 50 || apellido.trim().length > 50) {
+        return res.status(400).json({ error: 'Nombre y apellido: máximo 50 caracteres' });
+    }
+
+    conexion.query('UPDATE usuarios SET nombre = ?, apellido = ? WHERE id = ?', [nombre.trim(), apellido.trim(), req.params.id], (error, resultado) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error al guardar los datos' });
+        }
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.json({ mensaje: 'Datos actualizados' });
+    });
+});
+
+// cambiar la propia contraseña (hay que mandar la actual)
+app.put('/api/usuarios/:id/contrasena', (req, res) => {
+    const { actual, nueva } = req.body;
+
+    if (!actual || !nueva || !nueva.trim()) {
+        return res.status(400).json({ error: 'Completá las dos contraseñas' });
+    }
+    if (nueva.length > 100) {
+        return res.status(400).json({ error: 'La contraseña es muy larga (máximo 100 caracteres)' });
+    }
+
+    // el WHERE incluye la contraseña actual: si no coincide, no se actualiza nada
+    conexion.query('UPDATE usuarios SET contrasena = ? WHERE id = ? AND contrasena = ?', [nueva, req.params.id, actual], (error, resultado) => {
+        if (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Error al cambiar la contraseña' });
+        }
+        if (resultado.affectedRows === 0) {
+            return res.status(401).json({ error: 'La contraseña actual es incorrecta' });
+        }
+        res.json({ mensaje: 'Contraseña actualizada' });
+    });
+});
+
 // USUARIOS
 
 // listar usuarios (solo admin): /api/admin/usuarios?usuario_id=1

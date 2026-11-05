@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Préstamos Activos
     async function cargarPrestamos() {
         const tbody = $('tabla-prestamos-body');
-        tbody.innerHTML = '<tr><td colspan="4">Cargando...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="3">Cargando...</td></tr>';
         try {
             const res = await fetch(`/api/admin/prestamos?usuario_id=${usuario.id}`);
             const data = await res.json();
@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Notebook ' + p.notebook_numero + ' · ' + p.color,
                     p.usuario,
                     p.rol,
-                    new Date(p.fecha_retiro).toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' })
                 ].forEach(texto => {
                     const td = document.createElement('td');
                     td.textContent = texto;
@@ -167,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Usuarios
     async function cargarUsuarios() {
         const tbody = $('tabla-usuarios-body');
-        tbody.innerHTML = '<tr><td colspan="4">Cargando...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="3">Cargando...</td></tr>';
         try {
             const res = await fetch(`/api/admin/usuarios?usuario_id=${usuario.id}`);
             const data = await res.json();
