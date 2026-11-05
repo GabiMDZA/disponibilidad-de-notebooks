@@ -90,3 +90,12 @@ El proyecto usa **MySQL Workbench** en local. Antes de levantar el servidor hay 
    ```
 
 4. Si todo está bien, la terminal muestra `¡Conectado a la base de datos de notebooks!`. Abrir `http://localhost:3000` en el navegador.
+5. si su terminal muestra "la ejecución de scripts está deshabilitada", ejecutar una vez `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`.
+
+   ### Usuarios de prueba
+ 
+| Rol | DNI | Contraseña |
+|---|---|---|
+| Admin | `10000000` | `admin` |
+| Profesor (Domingo Britos) | `20000001` | `1234` |
+| Estudiante (Manuel Acosta) | `30000002` | `1234` |
